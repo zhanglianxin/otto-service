@@ -28,9 +28,9 @@ http.createServer((req, res) => {
                         res.end(null);
                         return;
                     }
-                    const script = new vm.Script(content);
-                    const sandbox = {};
-                    try {                    
+                    let script, sandbox = {};
+                    try {
+                        script = new vm.Script(content);
                         // https://nodejs.org/dist/latest-v10.x/docs/api/vm.html#vm_script_runinnewcontext_sandbox_options
                         script.runInNewContext(sandbox);
                     } catch (err) {
