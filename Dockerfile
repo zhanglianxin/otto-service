@@ -1,11 +1,16 @@
-FROM node:12-alpine
-LABEL maintainer="coolman@coolman.site"
+FROM node:14-alpine as builder
 
 COPY . /app
 
 WORKDIR /app
 
 RUN npm install
+
+FROM node:14-alpine
+
+COPY --from=builder /app /app
+
+WORKDIR /app
 
 USER node
 EXPOSE 9998

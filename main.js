@@ -16,7 +16,7 @@ http.createServer((req, res) => {
                 }).on('data', (chunk) => {
                     let maxLength = 1 << 24; // 16MB
                     if (chunk.length > maxLength) {
-                        req.connection.destroy();
+                        req.destroy();
                         return;
                     }
                     body.push(chunk);
